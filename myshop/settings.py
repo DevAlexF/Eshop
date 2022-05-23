@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-dxx*8=bj-@x&h)esl$8=l)z@-wp3!9c=dj=@)63erctgyz=jz*
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'orders',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myshop.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -83,7 +81,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -103,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -114,7 +110,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -133,3 +128,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Настройки Braintree.
+BRAINTREE_MERCHANT_ID = 'g8cpd4x6yshndmf5'  # ID продавца.
+BRAINTREE_PUBLIC_KEY = 'pj9ph9kf3tz6xyvt'  # Публичный ключ.
+BRAINTREE_PRIVATE_KEY = '7799b22b47e209fea89d15d57fff0988'  # Секретный ключ.
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
