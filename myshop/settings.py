@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-import django_heroku # dip
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,4 +146,7 @@ Configuration.configure(
     BRAINTREE_PRIVATE_KEY
 )
 
-django_heroku.settings(locals()) # dip
+
+# Heroku settings
+# import django_heroku # dip
+# django_heroku.settings(locals()) # dip
