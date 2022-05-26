@@ -24,7 +24,6 @@ kombu==5.2.4
 Pillow==9.1.1
 prometheus-client==0.14.1
 prompt-toolkit==3.0.29
-psycopg2-binary==2.9.3
 pycparser==2.21
 pydyf==0.2.0
 pyphen==0.12.0
