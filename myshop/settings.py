@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'payment',
+    'coupons'
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-# USE_TZ = True # dip
+USE_TZ = True # dip
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -132,6 +133,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'a...@gmail.com'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'a...@gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
 
 # Настройки Braintree.
 BRAINTREE_MERCHANT_ID = 'g8cpd4x6yshndmf5'  # ID продавца.
@@ -146,5 +156,3 @@ Configuration.configure(
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY
 )
-
-

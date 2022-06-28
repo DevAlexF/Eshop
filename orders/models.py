@@ -1,5 +1,8 @@
 from django.db import models
 from shop.models import Product
+from decimal import Decimal # Купон
+from django.core.validators import MinValueValidator, MaxValueValidator # Купон
+from coupons.models import Coupon # Купон
 
 
 class Order(models.Model):
@@ -13,15 +16,31 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     braintree_id = models.CharField(max_length=150, blank=True) # 8
+    # Купон
+    coupon = models.ForeignKey(Coupon,
+                               related_name='orders',
+                               null=True,
+                               blank=True,
+                               on_delete=models.SET_NULL)
+    discount = models.IntegerField(default=0,
+                                   validators=[MinValueValidator(0),
+                                               MaxValueValidator(100)])
+
+    # Купон
+
 
     class Meta:
         ordering = ('-created',)
+
+
 
     def __str__(self):
         return 'Order {}'.format(self.id)
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+        # return sum(item.get_cost() for item in self.items.all())
+        total_cost = sum(item.get_cost() for item in self.items.all()) # Купон
+        return total_cost - total_cost * (self.discount / Decimal('100')) # Купон
 
 
 class OrderItem(models.Model):

@@ -7,7 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('orders/', include('orders.urls', namespace='orders')),
     path('cart/', include('cart.urls', namespace='cart')),
-   path('payment/', include('payment.urls', namespace='payment')), # 8
+    path('payment/', include('payment.urls', namespace='payment')), # 8
+    path('coupons/', include('coupons.urls', namespace='coupons')), # Купон
     path('', include('shop.urls', namespace='shop')),
 ]
 if settings.DEBUG:
